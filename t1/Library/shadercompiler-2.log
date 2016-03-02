@@ -1,70 +1,46 @@
 Base path: D:/Program Files (x86)/Unity/Editor/Data
-Pipe name: \\.\pipe\UnityShaderCompiler-2-4424
+Pipe name: \\.\pipe\UnityShaderCompiler-2-6288
 Cmd: getPlatforms
 Cmd: compileSnippet
-  api=1 type=0 insize=876 outsize=158 kw= ok=1
+  api=9 type=0 insize=876 outsize=629 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=0 insize=1770 outsize=308 kw= ok=1
+  api=9 type=1 insize=876 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=1 insize=1770 outsize=351 kw= ok=1
+  api=5 type=1 insize=1770 outsize=6 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=1 insize=1381 outsize=462 kw= ok=1
+  api=9 type=1 insize=1381 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=1 insize=2301 outsize=509 kw= ok=1
+  api=9 type=1 insize=2301 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=1 insize=2154 outsize=461 kw= ok=1
+  api=9 type=1 insize=1401 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=0 insize=1401 outsize=218 kw= ok=1
+  api=9 type=1 insize=1788 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=1 insize=1401 outsize=276 kw= ok=1
+  api=9 type=1 insize=2219 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=8 type=0 insize=1788 outsize=2430 kw= ok=1
+  api=9 type=1 insize=1097 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=8 type=1 insize=1788 outsize=2064 kw= ok=1
+  api=9 type=1 insize=1179 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=1 insize=2219 outsize=430 kw= ok=1
+  api=9 type=1 insize=1329 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=8 type=0 insize=1852 outsize=2430 kw= ok=1
+  api=9 type=1 insize=1252 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=0 insize=1097 outsize=240 kw= ok=1
+  api=9 type=1 insize=1934 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=8 type=1 insize=1097 outsize=1471 kw= ok=1
+  api=9 type=0 insize=2284 outsize=2499 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=1 insize=924 outsize=104 kw= ok=1
+  api=9 type=0 insize=1260 outsize=1456 kw= ok=1
 Cmd: compileSnippet
-  api=1 type=1 insize=1179 outsize=138 kw= ok=1
+  api=9 type=1 insize=882 outsize=7 kw= ok=1
 Cmd: compileSnippet
-  api=8 type=0 insize=2137 outsize=2958 kw= ok=1
+  api=9 type=0 insize=1099 outsize=1008 kw= ok=1
 Cmd: compileSnippet
-  api=8 type=1 insize=2137 outsize=2592 kw= ok=1
+  api=9 type=0 insize=1051 outsize=1052 kw= ok=1
 Cmd: compileSnippet
-  api=8 type=0 insize=1060 outsize=1926 kw= ok=1
+  api=9 type=0 insize=1917 outsize=1973 kw= ok=1
 Cmd: compileSnippet
-  api=8 type=1 insize=1060 outsize=1471 kw= ok=1
-Cmd: compileSnippet
-  api=8 type=0 insize=1329 outsize=1950 kw= ok=1
-Cmd: compileSnippet
-  api=1 type=0 insize=1252 outsize=186 kw= ok=1
-Cmd: compileSnippet
-  api=8 type=1 insize=1252 outsize=1715 kw= ok=1
-Cmd: compileSnippet
-  api=1 type=1 insize=1934 outsize=410 kw= ok=1
-Cmd: compileSnippet
-  api=1 type=1 insize=1237 outsize=217 kw= ok=1
-Cmd: compileSnippet
-  api=1 type=1 insize=2284 outsize=695 kw= ok=1
-Cmd: compileSnippet
-  api=1 type=0 insize=882 outsize=158 kw= ok=1
-Cmd: compileSnippet
-  api=8 type=1 insize=882 outsize=1048 kw= ok=1
-Cmd: compileSnippet
-  api=8 type=0 insize=1099 outsize=2162 kw= ok=1
-Cmd: compileSnippet
-  api=1 type=0 insize=1051 outsize=158 kw= ok=1
-Cmd: compileSnippet
-  api=8 type=1 insize=1051 outsize=2015 kw= ok=1
-Cmd: compileSnippet
-  api=1 type=1 insize=1917 outsize=596 kw= ok=1
+  api=5 type=1 insize=1917 outsize=6 kw= ok=1
 Unhandled exception: Readfile from pipe failed. GLE=管道已结束。
 
 
