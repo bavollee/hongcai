@@ -35,6 +35,7 @@ public class Move : MonoBehaviour
         if (m == null)
             return;
 
+        
         e1.SetActive(false);
         e1.SetActive(true);
         touch = true;

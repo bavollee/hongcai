@@ -1,3 +1,2 @@
-#cat .gitignore
-Library/
-Temp/
+t1/Library/
+t1/Temp/
