@@ -46,11 +46,25 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\CharacterMotor.js" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\FPSInputController.js" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\PlatformInputController.js" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonCamera.js" />
-     <Compile Include="Assets\Standard Assets\Character Controllers\Sources\Scripts\ThirdPersonController.js" />
+     <Compile Include="Assets\Plugins\NC\CircleRotate1.js" />
+     <Compile Include="Assets\Plugins\NC\CircleRotate2.js" />
+     <Compile Include="Assets\Plugins\NC\DeadTime.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_TransRimShaderFader.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_TransRimShaderInOut.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_TransRimShaderIrisator.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_UVScroller.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_animRandomizer.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_animSpeedRandomizer.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_destroyThisTimed.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_effectCaster.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_materialColorRandomizer.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_moveThis.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_prefabGenerator.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_randomRotation.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_randomScale.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_rotateThis.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_stohasticArrowMovement.js" />
+     <Compile Include="Assets\Plugins\NC\Utility\SM_trailFade.js" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.8.2.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />
@@ -68,6 +82,7 @@
      <None Include="Assets\NGUI\Examples\Atlases\Wooden\Arimo18.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored (TextureClip).shader" />
      <None Include="Assets\NGUI\Examples\Atlases\SciFi\SciFi Font - Header.txt" />
+     <None Include="Assets\Resources\Shader\FXMaker_Mask Additive Tint.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 3.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Colored 1.shader" />
      <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
@@ -76,6 +91,7 @@
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 2.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Text 3.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 2.shader" />
+     <None Include="Assets\Resources\Shader\SpecularMap.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Packed 1.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored 1.shader" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Premultiplied Colored.shader" />

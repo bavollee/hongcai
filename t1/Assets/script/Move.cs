@@ -11,9 +11,19 @@ public class Move : MonoBehaviour
     float sp;
     float round = 300f;
     public Rigidbody r;
+    public GameObject e1;
     void Awake()
     {
         r = GetComponent<Rigidbody>();
+
+        foreach (var item in transform.GetComponentsInChildren<Transform>(true))
+        {
+            if (item.name == "effect")
+            {
+                e1 = item.gameObject;
+                e1.SetActive(false);
+            }
+        }
     }
     void OnCollisionEnter(Collision c)
     {
@@ -22,6 +32,8 @@ public class Move : MonoBehaviour
         if (m == null)
             return;
 
+        e1.SetActive(false);
+        e1.SetActive(true);
         touch = true;
         //Vector3 dir = c.gameObject.transform.position -transform.position;
          //c.gameObject.GetComponent<Move>().r.AddForce(getForce(force*0.5f).magnitude*r.velocity.normalized,ForceMode.Impulse);
