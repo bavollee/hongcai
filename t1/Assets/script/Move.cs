@@ -5,7 +5,8 @@ public class Move : MonoBehaviour
 {
     public float m_speed = 1;
     public bool touch = false;
-    public const float force = 20f;
+    public const float initForce = 20f; // 初始力度
+    public float force = initForce; // 当前力度
     public bool isForward = true;
 
     bool run = false;
@@ -106,7 +107,7 @@ public class Move : MonoBehaviour
         round = -round;
         sp = round;
     }
-    public Vector3 getForce(float f = force,bool dir = true)
+    public Vector3 getForce(float f, bool dir = true)
     {
         return transform.TransformDirection((dir?1 :-1)*Vector3.forward* f * r.mass * r.drag);
     }

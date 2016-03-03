@@ -186,6 +186,7 @@
      <Compile Include="Assets\script\PropMgr.cs" />
      <Compile Include="Assets\script\Role.cs" />
      <Compile Include="Assets\script\props\PropEffect.cs" />
+     <Compile Include="Assets\script\props\SpeedChange.cs" />
      <Compile Include="Assets\script\props\TurnBack.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.8.2.txt" />
