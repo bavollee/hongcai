@@ -6,6 +6,8 @@ public class Move : MonoBehaviour
     public float m_speed = 1;
     public bool touch = false;
     public const float force = 20f;
+    public bool isForward = true;
+
     bool run = false;
     float addSp;
     float sp;
@@ -92,7 +94,7 @@ public class Move : MonoBehaviour
         sp = 0;
         if (!touch)
         {
-            r.AddForce(getForce());
+            r.AddForce(getForce(force, isForward));
         }
     }
 
