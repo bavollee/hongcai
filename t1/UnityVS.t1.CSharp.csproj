@@ -210,6 +210,7 @@
     <Compile Include="Assets\script\PropMgr.cs" />
     <Compile Include="Assets\script\Role.cs" />
     <Compile Include="Assets\script\props\PropEffect.cs" />
+    <Compile Include="Assets\script\props\SpeedChange.cs" />
     <Compile Include="Assets\script\props\TurnBack.cs" />
   </ItemGroup>
   <ItemGroup>

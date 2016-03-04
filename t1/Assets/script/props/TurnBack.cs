@@ -3,6 +3,10 @@ using System.Collections;
 
 public class TurnBack : PropEffect
 {
+    void Start()
+    {
+    }
+
     protected override void OnTriggerPropEffect(GameObject target)
     {
         Debug.Log(string.Format("【{0}】触发道具效果：反方向走", target.name));
@@ -12,5 +16,7 @@ public class TurnBack : PropEffect
         {
             moveCom.isForward = !moveCom.isForward;
         }
+
+        Destroy(gameObject);
     }
 }

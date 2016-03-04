@@ -37,7 +37,7 @@ public class PropMgr : MonoBehaviour
             return;
         }
 
-        PropEffect prop = props[Random.Range(0, props.Length - 1)];
+        PropEffect prop = props[Random.Range(0, props.Length)];
         float posx = Random.Range(_scopeBounds.min.x, _scopeBounds.max.x);
         float posz = Random.Range(_scopeBounds.min.y, _scopeBounds.max.y);
         GameObject propGO = Instantiate(prop.gameObject, new Vector3(posx, 0, posz), Quaternion.identity) as GameObject;
