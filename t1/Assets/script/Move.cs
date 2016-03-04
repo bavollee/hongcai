@@ -7,7 +7,8 @@ public class Move : MonoBehaviour
    public Role lastHitRole;
     public float m_speed = 1;
     public bool touch = false;
-    public const float force = 0.3f;
+    public const float initForce = 0.3f;
+    public float force = initForce;
     public bool isForward = true;
     bool run = false;
     float addSp;
@@ -133,7 +134,7 @@ public class Move : MonoBehaviour
             sp = round;
         }
     }
-    public Vector3 getForce(float f = force,bool dir = true)
+    public Vector3 getForce(float f, bool dir = true)
     {
         return transform.TransformDirection((dir ? 1 : -1) * Vector3.forward * f * r.mass * r.drag * Physics.gravity.magnitude);
     }

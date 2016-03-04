@@ -4650,6 +4650,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_speed: 1
   touch: 0
+  force: .300000012
   isForward: 1
   r: {fileID: 0}
   e1: {fileID: 0}
@@ -4884,6 +4885,7 @@ GameObject:
   - 124: {fileID: 2138220579}
   - 81: {fileID: 2138220578}
   - 114: {fileID: 2138220583}
+  - 114: {fileID: 2138220584}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -4972,3 +4974,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 570216096b985d44d9266ae36eae1e7f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &2138220584
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2138220577}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3da329a486b79314091c936a95d837a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  scope: {fileID: 763526944}
+  props:
+  - {fileID: 11418358, guid: 5b543637a9cd421449cdde7fa25d74c5, type: 2}
+  - {fileID: 11418358, guid: d532059ffc2188845a39e8c023e0365f, type: 2}
+  - {fileID: 11406860, guid: 8f09947d73cdbc3479ce345360644fc2, type: 2}
+  timeInterval: 5

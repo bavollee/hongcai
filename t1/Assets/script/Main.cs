@@ -11,6 +11,7 @@ public class Main : MonoBehaviour {
     Dictionary<int, bool> player = new Dictionary<int, bool>();
     int max = 4;
     GameObject startBtn;
+    PropMgr _propMgr;
 	void Awake ()
     {
         //重力
@@ -22,6 +23,9 @@ public class Main : MonoBehaviour {
             player.Add(i, false);
         }
         startBtn = GameObject.Find("Top6");
+
+        _propMgr = gameObject.GetComponent<PropMgr>();
+        _propMgr.enabled = false;
         UIEventListener.Get(startBtn).onClick = startGame;
 	}
 
@@ -39,6 +43,7 @@ public class Main : MonoBehaviour {
             Role r = addRole(i + 1, player[i]);
             r.setControl(btnList[i], key[i]);
         }
+        _propMgr.enabled = true;
         UIEventListener.Get(GameObject.Find("Top5")).onClick = reset;
     }
 
