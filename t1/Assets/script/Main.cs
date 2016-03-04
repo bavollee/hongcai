@@ -6,33 +6,49 @@ public class Main : MonoBehaviour {
     GameObject g;
     Move m;
     List<KeyCode> key = new List<KeyCode>() {KeyCode.Q,KeyCode.P, KeyCode.M , KeyCode.Z};
-    List<Vector3> v3 = new List<Vector3>();
     List<Role> roleList = new List<Role>();
-	// Use this for initialization
+    List<GameObject> btnList = new List<GameObject>();
+    Dictionary<int, bool> player = new Dictionary<int, bool>();
     int max = 4;
+    GameObject startBtn;
 	void Awake ()
     {
         //重力
-        Physics.gravity = Vector3.down * 10f;
+        Physics.gravity = Vector3.down * 30f;
+        for (int i = 0; i < max ; i++)
+        {
+            btnList.Add(GameObject.Find("Top" + i));
+            UIEventListener.Get(btnList[i]).onClick = chooseRole;
+            player.Add(i, false);
+        }
+        startBtn = GameObject.Find("Top6");
+        UIEventListener.Get(startBtn).onClick = startGame;
+	}
 
-
-        for (int i = 1; i < max+1; i++)
+    private void chooseRole(GameObject go)
+    {
+        int id = btnList.IndexOf(go);
+        player[id] = !player[id];
+    }
+    void startGame(GameObject g)
+    {
+        startBtn.SetActive(false);
+        for (int i = 0; i < max; i++)
         {
             //m = GameObject.Find("b" + i).GetComponent<Move>();
-            Role r = addRole(i);
-            r.move.setBtn(GameObject.Find("Top" + i));
-            r.move.setKey(key[i - 1]);
-            v3.Add(r.move.transform.position);
+            Role r = addRole(i + 1, player[i]);
+            r.setControl(btnList[i], key[i]);
         }
         UIEventListener.Get(GameObject.Find("Top5")).onClick = reset;
-	}
-    Role addRole(int id)
+    }
+
+    Role addRole(int id,bool player = false)
     {
         float ra = 5f;
         float v = 2*Mathf.PI / max;
-        v = v * id + Mathf.PI / 4;
+        v = v * id + Mathf.PI / 4+Mathf.PI;
         Vector3 v3 = new Vector3(ra * Mathf.Sin(v), 0, ra * Mathf.Cos(v));
-        Role  role= new Role(id,v3);
+        Role  role= new Role(id,v3,player);
         roleList.Add(role);
        return role;
     }
@@ -40,18 +56,20 @@ public class Main : MonoBehaviour {
     {
         for (int i = 0; i < roleList.Count; i++)
         {
-            roleList[i].move.r.Sleep();
-            //mList[i].r.sleepAngularVelocity = 5;
-            //mList[i].r.sleepVelocity = 5;
-            roleList[i].move.transform.position = v3[i];
+            roleList[i].move.reset();
         }
     }
 
 	// Update is called once per frame
 	void Update () {
-	if(Input.GetKeyDown(KeyCode.Escape))
-    {
-        Application.Quit();
-    }
+        foreach (var item in roleList)
+        {
+            item.update();
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            Application.Quit();
+        }
 	}
 }

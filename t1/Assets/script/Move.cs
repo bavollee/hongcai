@@ -3,11 +3,12 @@ using System.Collections;
 
 public class Move : MonoBehaviour
 {
+   public Role role;
+   public Role lastHitRole;
     public float m_speed = 1;
     public bool touch = false;
-    public const float force = 20f;
+    public const float force = 0.3f;
     public bool isForward = true;
-
     bool run = false;
     float addSp;
     float sp;
@@ -27,37 +28,49 @@ public class Move : MonoBehaviour
             }
         }
     }
+    public void reset()
+    {
+        r.angularVelocity = Vector3.zero;
+        r.velocity = Vector3.zero;
+        r.Sleep();
+        transform.position = role.bornPos;
+        gameObject.SetActive(true);
+    }
     void OnCollisionEnter(Collision c)
     {
-        //Debug.Log("++++++++++++++OnCollisionEnter");
         Move m = c.gameObject.GetComponent<Move>();
         if (m == null)
             return;
-
         
         e1.SetActive(false);
         e1.SetActive(true);
-        touch = true;
-        //Vector3 dir = c.gameObject.transform.position -transform.position;
-         //c.gameObject.GetComponent<Move>().r.AddForce(getForce(force*0.5f).magnitude*r.velocity.normalized,ForceMode.Impulse);
+       // touch = true;
+        Vector3 dir = c.gameObject.transform.position -transform.position;
+        m.r.AddForce(getForce(force * 0.2f).magnitude * dir.normalized, ForceMode.Impulse);
+        lastHitRole = m.role;
         //r.AddForce(getForce(force,false));
     }
+
+
     // Update is called once per frame
     void Update()
     {
+
         if (Input.GetKeyDown(key))
         {
             
         }
-        if (Input.GetKey(key))
+        if (role.ai.AiOn == false)
         {
-            run = true;
+            if (Input.GetKey(key))
+            {
+                rush();
+            }
+            if (Input.GetKeyUp(key))
+            {
+                up();
+            }
         }
-        if (Input.GetKeyUp(key))
-        {
-            up();
-        }
-
         if (run)
         {
             down();
@@ -67,6 +80,11 @@ public class Move : MonoBehaviour
             gameObject.transform.Rotate(new Vector3(0, Time.deltaTime * sp, 0), Space.World);
         }
         //this.m_transform.Translate(new Vector3(moveh, 0, movev));
+    }
+
+    public void rush()
+    {
+        run = true;
     }
     KeyCode key;
     public void setKey(KeyCode c)
@@ -79,9 +97,11 @@ public class Move : MonoBehaviour
     }
     private void onPress(GameObject go, bool state)
     {
+        if (role.ai.AiOn)
+            return;
         if (state)
-        { 
-            run = true;
+        {
+            rush();
         }
         else
         {
@@ -98,18 +118,24 @@ public class Move : MonoBehaviour
         }
     }
 
-
-    public void up()
+    public void stopRush()
     {
         touch = false;
         addSp = 0;
         run = false;
-        round = -round;
-        sp = round;
+    }
+    public void up()
+    {
+        stopRush();
+        if (sp != round)
+        {
+            round = -round;
+            sp = round;
+        }
     }
     public Vector3 getForce(float f = force,bool dir = true)
     {
-        return transform.TransformDirection((dir?1 :-1)*Vector3.forward* f * r.mass * r.drag);
+        return transform.TransformDirection((dir ? 1 : -1) * Vector3.forward * f * r.mass * r.drag * Physics.gravity.magnitude);
     }
 
 
