@@ -11,6 +11,8 @@ public class Main : MonoBehaviour {
     Dictionary<int, bool> player = new Dictionary<int, bool>();
     int max = 4;
     GameObject startBtn;
+    GameObject endBtn;
+    GameObject resetBtn;
     PropMgr _propMgr;
 	void Awake ()
     {
@@ -22,8 +24,10 @@ public class Main : MonoBehaviour {
             UIEventListener.Get(btnList[i]).onClick = chooseRole;
             player.Add(i, false);
         }
+        resetBtn = GameObject.Find("Top5");
         startBtn = GameObject.Find("Top6");
-
+        endBtn = GameObject.Find("Top7");
+        endBtn.SetActive(false);
         _propMgr = gameObject.GetComponent<PropMgr>();
         _propMgr.enabled = false;
         UIEventListener.Get(startBtn).onClick = startGame;
@@ -44,7 +48,7 @@ public class Main : MonoBehaviour {
             r.setControl(btnList[i], key[i]);
         }
         _propMgr.enabled = true;
-        UIEventListener.Get(GameObject.Find("Top5")).onClick = reset;
+        UIEventListener.Get(resetBtn).onClick = reset;
     }
 
     Role addRole(int id,bool player = false)
@@ -61,17 +65,38 @@ public class Main : MonoBehaviour {
     {
         for (int i = 0; i < roleList.Count; i++)
         {
-            roleList[i].move.reset();
+            roleList[i].born();
         }
     }
+        int maxScore=0;
+    public void endGame()
+    {
 
+        foreach (var item in roleList)
+        {
+            if (item.score < maxScore)
+                item.die(true);
+            else
+                item.win();
+        }
+        endBtn.SetActive(true);
+        resetBtn.SetActive(false);
+
+    }
 	// Update is called once per frame
 	void Update () {
         foreach (var item in roleList)
         {
             item.update();
         }
-
+        foreach (var item in roleList)
+        {
+            maxScore = Mathf.Max(maxScore, item.score);
+        }
+        if(maxScore >=5)
+        {
+            endGame();
+        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();

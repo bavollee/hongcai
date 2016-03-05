@@ -31,6 +31,7 @@ public class Move : MonoBehaviour
     }
     public void reset()
     {
+        lastHitRole = null;
         r.angularVelocity = Vector3.zero;
         r.velocity = Vector3.zero;
         r.Sleep();
@@ -137,15 +138,6 @@ public class Move : MonoBehaviour
     public Vector3 getForce(float f, bool dir = true)
     {
         return transform.TransformDirection((dir ? 1 : -1) * Vector3.forward * f * r.mass * r.drag * Physics.gravity.magnitude);
-    }
-
-
-    public void useMy()
-    {
-        //if (addSp < 1)
-        //    addSp += addSpVal;
-        //sp = 0;
-        //transform.Translate(Vector3.forward * Time.deltaTime * 10f * addSp, Space.Self);
     }
 }
 

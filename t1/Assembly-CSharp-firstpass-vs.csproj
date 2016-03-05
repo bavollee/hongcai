@@ -91,6 +91,7 @@
      <Compile Include="Assets\Plugins\NC\Utility\NcSafeTool.cs" />
      <Compile Include="Assets\Plugins\NC\Utility\NcTickTimerTool.cs" />
      <Compile Include="Assets\Plugins\NC\wrap.cs" />
+     <Compile Include="Assets\Plugins\iTween\iTween.cs" />
      <None Include="Assets\NGUI\Examples\Shaders\Unlit - Depth Cutout.shader" />
      <None Include="Assets\NGUI\ReadMe - 3.8.2.txt" />
      <None Include="Assets\NGUI\Resources\Shaders\Unlit - Transparent Masked 1.shader" />

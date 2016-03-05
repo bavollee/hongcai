@@ -10,6 +10,8 @@ public class Role  {
     public int score = 0;
     public UILabel txt;
     public bool dead;
+    public const float initScale = 2f;
+    public float nowScale = initScale;
     public Role(int id,Vector3 pos,bool player = false)
     {
         this.id = id;
@@ -23,10 +25,19 @@ public class Role  {
 
         Material m = Resources.Load("ball_1"+id) as Material;
         g.renderer.material = m;
-        g.transform.localScale = 3 * Vector3.one;
+        g.transform.localScale = initScale * Vector3.one;
         g.transform.position = pos;
         g.transform.LookAt(Vector3.zero);
 
+    }
+
+    public void setScale(float s)
+    {
+        if (s <= 4)
+        {
+            nowScale = s;
+            g.transform.localScale = nowScale * Vector3.one;
+        }
     }
     public void setControl(GameObject btn,KeyCode k)
     {
@@ -44,6 +55,7 @@ public class Role  {
     {
         score += s;
         txt.text = ""+score;
+        setScale(nowScale + 0.5f*s);
     }
     const float reLiveTime = 1f;
     float tempTime = 0f;
@@ -61,18 +73,26 @@ public class Role  {
         }
     }
 
-    public void die()
+    public void die(bool end = false)
     {
             if (g.activeSelf)
             {
                 dead = true;
-                move.lastHitRole.addScore(1);
+                if(move.lastHitRole != null && !end)
+                    move.lastHitRole.addScore(1);
+                //setScale(initScale);
                 g.SetActive(false);
             }
     }
     public void born()
     {
-            move.reset();
-            dead = false;
+        setScale(initScale);
+        move.reset();
+        dead = false;
+    }
+    public void win()
+    {
+        ai.AiOn = false;
+        move.enabled = false;
     }
 }

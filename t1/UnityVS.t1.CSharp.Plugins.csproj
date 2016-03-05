@@ -105,6 +105,7 @@
     <Compile Include="Assets\Plugins\NC\Utility\NcSafeTool.cs" />
     <Compile Include="Assets\Plugins\NC\Utility\NcTickTimerTool.cs" />
     <Compile Include="Assets\Plugins\NC\wrap.cs" />
+    <Compile Include="Assets\Plugins\iTween\iTween.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\NGUI\Examples\Atlases\Fantasy\Fantasy Font - Normal.txt" />
