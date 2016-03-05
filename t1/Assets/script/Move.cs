@@ -44,8 +44,8 @@ public class Move : MonoBehaviour
         if (m == null)
             return;
         
-        e1.SetActive(false);
-        e1.SetActive(true);
+        //e1.SetActive(false);
+        //e1.SetActive(true);
        // touch = true;
         Vector3 dir = c.gameObject.transform.position -transform.position;
         m.r.AddForce(getForce(force * 0.2f).magnitude * dir.normalized, ForceMode.Impulse);

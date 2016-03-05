@@ -9,24 +9,31 @@ public class Main : MonoBehaviour {
     List<Role> roleList = new List<Role>();
     List<GameObject> btnList = new List<GameObject>();
     Dictionary<int, bool> player = new Dictionary<int, bool>();
-    int max = 4;
+    int num = 4;
     GameObject startBtn;
     GameObject endBtn;
     GameObject resetBtn;
+    UILabel tips;
+    float time = 0;
+    bool start = false;
     PropMgr _propMgr;
 	void Awake ()
     {
         //重力
         Physics.gravity = Vector3.down * 30f;
-        for (int i = 0; i < max ; i++)
+        for (int i = 0; i < num ; i++)
         {
             btnList.Add(GameObject.Find("Top" + i));
+            btnList[i].GetComponent<UISprite>().color = Color.grey;
             UIEventListener.Get(btnList[i]).onClick = chooseRole;
             player.Add(i, false);
         }
         resetBtn = GameObject.Find("Top5");
+        resetBtn.SetActive(false);
         startBtn = GameObject.Find("Top6");
         endBtn = GameObject.Find("Top7");
+        tips = GameObject.Find("tips").GetComponent<UILabel>();
+        tips.text = "choose player";
         endBtn.SetActive(false);
         _propMgr = gameObject.GetComponent<PropMgr>();
         _propMgr.enabled = false;
@@ -37,11 +44,24 @@ public class Main : MonoBehaviour {
     {
         int id = btnList.IndexOf(go);
         player[id] = !player[id];
+        if(player[id])
+        {
+            btnList[id].GetComponent<UISprite>().color = Color.white;
+        }else
+        {
+            btnList[id].GetComponent<UISprite>().color = Color.grey;
+        }
     }
     void startGame(GameObject g)
     {
+        foreach (var item in btnList)
+        {
+             UIEventListener.Get(item).onClick -= chooseRole;
+        }
+        start = true;
+        time = 20f;
         startBtn.SetActive(false);
-        for (int i = 0; i < max; i++)
+        for (int i = 0; i < num; i++)
         {
             //m = GameObject.Find("b" + i).GetComponent<Move>();
             Role r = addRole(i + 1, player[i]);
@@ -54,7 +74,7 @@ public class Main : MonoBehaviour {
     Role addRole(int id,bool player = false)
     {
         float ra = 5f;
-        float v = 2*Mathf.PI / max;
+        float v = 2*Mathf.PI / num;
         v = v * id + Mathf.PI / 4+Mathf.PI;
         Vector3 v3 = new Vector3(ra * Mathf.Sin(v), 0, ra * Mathf.Cos(v));
         Role  role= new Role(id,v3,player);
@@ -68,10 +88,11 @@ public class Main : MonoBehaviour {
             roleList[i].born();
         }
     }
-        int maxScore=0;
+    int maxScore=0;
     public void endGame()
     {
-
+        start = false;
+        _propMgr.enabled = false;
         foreach (var item in roleList)
         {
             if (item.score < maxScore)
@@ -81,10 +102,19 @@ public class Main : MonoBehaviour {
         }
         endBtn.SetActive(true);
         resetBtn.SetActive(false);
-
     }
 	// Update is called once per frame
 	void Update () {
+
+        if (time <= 0 && start)
+        {
+            endGame();
+        }
+        else if (start)
+        {
+            time -= Time.deltaTime;
+            tips.text = "time: " + (int)time;
+        }
         foreach (var item in roleList)
         {
             item.update();
@@ -93,10 +123,10 @@ public class Main : MonoBehaviour {
         {
             maxScore = Mathf.Max(maxScore, item.score);
         }
-        if(maxScore >=5)
-        {
-            endGame();
-        }
+//         if (maxScore >= 5)
+//         {
+//             endGame();
+//        }
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
