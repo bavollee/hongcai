@@ -14,7 +14,7 @@ public class Main : MonoBehaviour {
     GameObject endBtn;
     GameObject resetBtn;
     UILabel tips;
-    float time = 0;
+    float gameTime = 0;
     bool start = false;
     PropMgr _propMgr;
 	void Awake ()
@@ -59,11 +59,10 @@ public class Main : MonoBehaviour {
              UIEventListener.Get(item).onClick -= chooseRole;
         }
         start = true;
-        time = 20f;
+        gameTime = 20f;
         startBtn.SetActive(false);
         for (int i = 0; i < num; i++)
         {
-            //m = GameObject.Find("b" + i).GetComponent<Move>();
             Role r = addRole(i + 1, player[i]);
             r.setControl(btnList[i], key[i]);
         }
@@ -71,15 +70,15 @@ public class Main : MonoBehaviour {
         UIEventListener.Get(resetBtn).onClick = reset;
     }
 
-    Role addRole(int id,bool player = false)
+    Role addRole(int id, bool player = false)
     {
         float ra = 5f;
-        float v = 2*Mathf.PI / num;
-        v = v * id + Mathf.PI / 4+Mathf.PI;
+        float v = 2 * Mathf.PI / num;
+        v = v * id + Mathf.PI / 4 + Mathf.PI;
         Vector3 v3 = new Vector3(ra * Mathf.Sin(v), 0, ra * Mathf.Cos(v));
-        Role  role= new Role(id,v3,player);
+        Role role = new Role(id, v3, player);
         roleList.Add(role);
-       return role;
+        return role;
     }
     private void reset(GameObject go)
     {
@@ -103,17 +102,16 @@ public class Main : MonoBehaviour {
         endBtn.SetActive(true);
         resetBtn.SetActive(false);
     }
-	// Update is called once per frame
 	void Update () {
 
-        if (time <= 0 && start)
+        if (gameTime <= 0 && start)
         {
             endGame();
         }
         else if (start)
         {
-            time -= Time.deltaTime;
-            tips.text = "time: " + (int)time;
+            gameTime -= Time.deltaTime;
+            tips.text = "time: " + (int)gameTime;
         }
         foreach (var item in roleList)
         {
