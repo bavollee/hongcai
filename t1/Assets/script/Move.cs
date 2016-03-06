@@ -11,7 +11,6 @@ public class Move : MonoBehaviour
     public float force = initForce;
     public bool isForward = true;
     bool run = false;
-    float addSp;
     float sp;
     float round = 300f;
     public Rigidbody r;
@@ -123,7 +122,6 @@ public class Move : MonoBehaviour
     public void stopRush()
     {
         touch = false;
-        addSp = 0;
         run = false;
     }
     public void up()
