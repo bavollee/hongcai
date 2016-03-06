@@ -29,7 +29,6 @@ public class Driver : MonoBehaviour
     private void OnStartMode2(GameObject go)
     {
         mode = 2;
-//         Application.LoadLevel("game2");
-        Debug.LogWarning("开发中，请稍候~");
+        Application.LoadLevel("game2");
     }
 }

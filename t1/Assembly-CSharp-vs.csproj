@@ -190,7 +190,7 @@
      <Compile Include="Assets\script\PropMgr.cs" />
      <Compile Include="Assets\script\Role.cs" />
      <Compile Include="Assets\script\mode2\AutoRot.cs" />
-     <Compile Include="Assets\script\mode2\Bumb.cs" />
+     <Compile Include="Assets\script\mode2\Bomb.cs" />
      <Compile Include="Assets\script\mode2\DropJudge.cs" />
      <Compile Include="Assets\script\mode2\InputMgr.cs" />
      <Compile Include="Assets\script\mode2\Main2.cs" />

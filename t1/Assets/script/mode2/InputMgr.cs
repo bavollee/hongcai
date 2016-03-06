@@ -4,13 +4,17 @@ using UnityEngine.UI;
 
 public class InputMgr : MonoBehaviour
 {
-    public GameObject player;
+    public string playerName;
+    public GameObject playerGO;
     public KeyCode keyCode = KeyCode.None;
     public bool keyboardMode = true;
 
     private AutoRot _autoRotCom;
     private RunForward _runForwardCom;
     private bool _bRun = false;
+
+    private UILabel _score;
+    private Role2 _player;
 
 
     void Awake()
@@ -22,10 +26,19 @@ public class InputMgr : MonoBehaviour
 
     void Start()
     {
-        _autoRotCom = player.GetComponent<AutoRot>();
-        _runForwardCom = player.GetComponent<RunForward>();
+        _autoRotCom = playerGO.GetComponent<AutoRot>();
+        _runForwardCom = playerGO.GetComponent<RunForward>();
+
+        _score = transform.Find("Label").gameObject.GetComponent<UILabel>();
+        _player = playerGO.GetComponent<Role2>();
+        _player.scoreUpdatedCallback += OnScoreUpdated;
 
         UIEventListener.Get(gameObject).onPress += onPress;
+    }
+
+    private void OnScoreUpdated(int newestScore)
+    {
+        _score.text = newestScore.ToString();
     }
 
     void Update()
