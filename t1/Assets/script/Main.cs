@@ -2,29 +2,33 @@
 using System.Collections;
 using System.Collections.Generic;
 public class Main : MonoBehaviour {
-
+    public static Main main;
     GameObject g;
     Move m;
     List<KeyCode> key = new List<KeyCode>() {KeyCode.Q,KeyCode.P, KeyCode.M , KeyCode.Z};
     List<Role> roleList = new List<Role>();
     List<GameObject> btnList = new List<GameObject>();
+    public List<Color> btnColor = new List<Color>() { new Color(1, 0, 0), new Color(0.74f, 0, 1), new Color(1, 0.5f, 0), new Color(0, 0.45f, 0) };
     Dictionary<int, bool> player = new Dictionary<int, bool>();
+    List<Effect> effect = new List<Effect>();
     int num = 4;
     GameObject startBtn;
     GameObject endBtn;
     GameObject resetBtn;
     UILabel tips;
     float gameTime = 0;
-    bool start = false;
+    public static bool start = false;
     PropMgr _propMgr;
+    
 	void Awake ()
     {
+        main = this;
         //重力
         Physics.gravity = Vector3.down * 30f;
         for (int i = 0; i < num ; i++)
         {
             btnList.Add(GameObject.Find("Top" + i));
-            btnList[i].GetComponent<UISprite>().color = Color.grey;
+            btnList[i].GetComponent<UISprite>().color = btnColor[i]+Color.grey;
             UIEventListener.Get(btnList[i]).onClick = chooseRole;
             player.Add(i, false);
         }
@@ -38,7 +42,13 @@ public class Main : MonoBehaviour {
         _propMgr = gameObject.GetComponent<PropMgr>();
         _propMgr.enabled = false;
         UIEventListener.Get(startBtn).onClick = startGame;
+        UIEventListener.Get(endBtn).onClick = back;
 	}
+
+    private void back(GameObject go)
+    {
+        Application.LoadLevel("driver");
+    }
 
     private void chooseRole(GameObject go)
     {
@@ -46,10 +56,10 @@ public class Main : MonoBehaviour {
         player[id] = !player[id];
         if(player[id])
         {
-            btnList[id].GetComponent<UISprite>().color = Color.white;
+            btnList[id].GetComponent<UISprite>().color = btnColor[id]; 
         }else
         {
-            btnList[id].GetComponent<UISprite>().color = Color.grey;
+            btnList[id].GetComponent<UISprite>().color = btnColor[id] + Color.grey;
         }
     }
     void startGame(GameObject g)
@@ -102,8 +112,12 @@ public class Main : MonoBehaviour {
         endBtn.SetActive(true);
         resetBtn.SetActive(false);
     }
-	void Update () {
 
+	void Update () {
+        foreach (var item in roleList)
+        {
+            maxScore = Mathf.Max(maxScore, item.score);
+        }
         if (gameTime <= 0 && start)
         {
             endGame();
@@ -117,10 +131,7 @@ public class Main : MonoBehaviour {
         {
             item.update();
         }
-        foreach (var item in roleList)
-        {
-            maxScore = Mathf.Max(maxScore, item.score);
-        }
+
 //         if (maxScore >= 5)
 //         {
 //             endGame();

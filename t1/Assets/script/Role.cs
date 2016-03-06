@@ -55,7 +55,7 @@ public class Role  {
     {
         score += s;
         txt.text = ""+score;
-        setScale(nowScale + 0.5f*s);
+        setScale(nowScale + 0.2f*s);
     }
     const float reLiveTime = 1f;
     float tempTime = 0f;
@@ -66,7 +66,7 @@ public class Role  {
             tempTime += Time.deltaTime;
             die();
         }
-        if (dead && tempTime > reLiveTime)
+        if (Main.start && dead && tempTime > reLiveTime)
         {
             tempTime = 0;
             born();

@@ -14,19 +14,9 @@ public class Move : MonoBehaviour
     float sp;
     float round = 300f;
     public Rigidbody r;
-    public GameObject e1;
     void Awake()
     {
         r = GetComponent<Rigidbody>();
-
-        foreach (var item in transform.GetComponentsInChildren<Transform>(true))
-        {
-            if (item.name == "effect")
-            {
-                e1 = item.gameObject;
-                e1.SetActive(false);
-            }
-        }
     }
     public void reset()
     {
@@ -46,6 +36,13 @@ public class Move : MonoBehaviour
         //e1.SetActive(false);
         //e1.SetActive(true);
        // touch = true;
+
+        Vector3 point = (c.gameObject.transform.position + transform.position) / 2;
+        if(m.role.id < role.id)//一次触发
+        {
+           GameMgr.instance.addEffect(point);
+           GameMgr.instance.playAudio();
+        }
         Vector3 dir = c.gameObject.transform.position -transform.position;
         m.r.AddForce(getForce(force * 0.2f).magnitude * dir.normalized, ForceMode.Impulse);
         lastHitRole = m.role;
@@ -56,7 +53,6 @@ public class Move : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (Input.GetKeyDown(key))
         {
             
