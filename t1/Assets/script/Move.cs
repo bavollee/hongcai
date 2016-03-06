@@ -47,6 +47,7 @@ public class Move : MonoBehaviour
         //e1.SetActive(false);
         //e1.SetActive(true);
        // touch = true;
+        
         Vector3 dir = c.gameObject.transform.position -transform.position;
         m.r.AddForce(getForce(force * 0.2f).magnitude * dir.normalized, ForceMode.Impulse);
         lastHitRole = m.role;
