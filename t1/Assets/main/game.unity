@@ -1361,7 +1361,6 @@ MonoBehaviour:
   force: .300000012
   isForward: 1
   r: {fileID: 0}
-  e1: {fileID: 0}
 --- !u!114 &1008195292
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2448,7 +2447,7 @@ GameObject:
   - 114: {fileID: 1801446307}
   m_Layer: 8
   m_Name: 2D Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

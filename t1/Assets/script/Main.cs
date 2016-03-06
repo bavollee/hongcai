@@ -2,7 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 public class Main : MonoBehaviour {
-
+    public static Main main;
     GameObject g;
     Move m;
     List<KeyCode> key = new List<KeyCode>() {KeyCode.Q,KeyCode.P, KeyCode.M , KeyCode.Z};
@@ -10,6 +10,7 @@ public class Main : MonoBehaviour {
     List<GameObject> btnList = new List<GameObject>();
     public List<Color> btnColor = new List<Color>() { new Color(1, 0, 0), new Color(0.74f, 0, 1), new Color(1, 0.5f, 0), new Color(0, 0.45f, 0) };
     Dictionary<int, bool> player = new Dictionary<int, bool>();
+    List<Effect> effect = new List<Effect>();
     int num = 4;
     GameObject startBtn;
     GameObject endBtn;
@@ -18,14 +19,16 @@ public class Main : MonoBehaviour {
     float gameTime = 0;
     public static bool start = false;
     PropMgr _propMgr;
+    
 	void Awake ()
     {
+        main = this;
         //重力
         Physics.gravity = Vector3.down * 30f;
         for (int i = 0; i < num ; i++)
         {
             btnList.Add(GameObject.Find("Top" + i));
-            btnList[i].GetComponent<UISprite>().color = btnColor[i] + Color.grey;
+            btnList[i].GetComponent<UISprite>().color = btnColor[i]+Color.grey;
             UIEventListener.Get(btnList[i]).onClick = chooseRole;
             player.Add(i, false);
         }
@@ -39,7 +42,13 @@ public class Main : MonoBehaviour {
         _propMgr = gameObject.GetComponent<PropMgr>();
         _propMgr.enabled = false;
         UIEventListener.Get(startBtn).onClick = startGame;
+        UIEventListener.Get(endBtn).onClick = back;
 	}
+
+    private void back(GameObject go)
+    {
+        Application.LoadLevel("driver");
+    }
 
     private void chooseRole(GameObject go)
     {
@@ -103,6 +112,7 @@ public class Main : MonoBehaviour {
         endBtn.SetActive(true);
         resetBtn.SetActive(false);
     }
+
 	void Update () {
         foreach (var item in roleList)
         {
