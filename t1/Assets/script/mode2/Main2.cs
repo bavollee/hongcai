@@ -93,7 +93,7 @@ public class Main2 : MonoBehaviour
 
     private void OnResetBtnClick(GameObject go)
     {
-        Application.LoadLevel("game2");
+        Application.LoadLevel("driver");
     }
 
     private IEnumerator OnStartGame()
