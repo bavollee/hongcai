@@ -12,10 +12,12 @@ public class Role  {
     public bool dead;
     public const float initScale = 2f;
     public float nowScale = initScale;
+    public string name = "";
     public Role(int id,Vector3 pos,bool player = false)
     {
         this.id = id;
         this.bornPos = pos;
+        name = "1"+id;
         g =GameObject.Instantiate(Resources.Load("ball")) as GameObject;
         move = g.GetComponent<Move>();
         move.role = this;

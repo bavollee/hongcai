@@ -104,13 +104,20 @@ public class Main : MonoBehaviour {
     {
         start = false;
         _propMgr.enabled = false;
+        List<Role> w = new List<Role>();
+        string winner = "";
         foreach (var item in roleList)
         {
             if (item.score < maxScore)
                 item.die(true);
             else
+            {
+                w.Add(item);
+                winner += " " + item.name;
                 item.win();
+            }
         }
+        tips.text = "winner:" + winner;
         endBtn.SetActive(true);
         resetBtn.SetActive(false);
     }

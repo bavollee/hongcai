@@ -1612,11 +1612,11 @@ MonoBehaviour:
   leftAnchor:
     target: {fileID: 1933333241}
     relative: .5
-    absolute: -400
+    absolute: -463
   rightAnchor:
     target: {fileID: 1933333241}
     relative: .5
-    absolute: 400
+    absolute: 463
   bottomAnchor:
     target: {fileID: 1933333241}
     relative: 1
@@ -1628,13 +1628,13 @@ MonoBehaviour:
   updateAnchors: 1
   mColor: {r: 1, g: 1, b: 1, a: 1}
   mPivot: 4
-  mWidth: 800
+  mWidth: 926
   mHeight: 98
   mDepth: 3
   autoResizeBoxCollider: 0
   hideIfOffScreen: 0
   keepAspectRatio: 0
-  aspectRatio: 8.16326523
+  aspectRatio: 9.44897938
   keepCrispWhenShrunk: 1
   mTrueTypeFont: {fileID: 0}
   mFont: {fileID: 11400000, guid: 29056518aafb01b49a5b08faf8e30cff, type: 2}
