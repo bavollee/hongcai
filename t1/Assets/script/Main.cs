@@ -8,7 +8,7 @@ public class Main : MonoBehaviour {
     List<KeyCode> key = new List<KeyCode>() {KeyCode.Q,KeyCode.P, KeyCode.M , KeyCode.Z};
     List<Role> roleList = new List<Role>();
     List<GameObject> btnList = new List<GameObject>();
-    public List<Color> btnColor = new List<Color>() { new Color(1, 0, 0), new Color(0.74f, 0, 1), new Color(1, 0.5f, 0), new Color(0, 0.45f, 0) };
+    public static List<Color> btnColor = new List<Color>() { new Color(1, 0, 0), new Color(0.74f, 0, 1), new Color(1, 0.5f, 0), new Color(0, 0.45f, 0) };
     Dictionary<int, bool> player = new Dictionary<int, bool>();
     List<Effect> effect = new List<Effect>();
     int num = 4;

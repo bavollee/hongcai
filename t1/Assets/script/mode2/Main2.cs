@@ -25,6 +25,11 @@ public class Main2 : MonoBehaviour
 
     void Awake()
     {
+        for (int i = 0; i < inputs.Length; ++i)
+        {
+            InputMgr input = inputs[i];
+            input.sp.color = Main.btnColor[i];
+        }
         SetIsInputEnabled(false);
         SetIsPlayersActivated(false);
 
