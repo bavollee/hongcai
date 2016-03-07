@@ -74,7 +74,6 @@ public class Main : MonoBehaviour {
              UIEventListener.Get(item).onClick -= chooseRole;
         }
         start = true;
-        gameTime = 20f;
         startBtn.SetActive(false);
         for (int i = 0; i < num; i++)
         {
