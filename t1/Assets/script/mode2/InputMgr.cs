@@ -17,6 +17,18 @@ public class InputMgr : MonoBehaviour
 
     private UILabel _score;
     private Role2 _player;
+
+    private Color _spOrgColor;
+    private bool _isSelected = false;
+    public bool isSelected
+    {
+        get { return _isSelected; }
+        set
+        {
+            _isSelected = value;
+            sp.color = value ? color : _spOrgColor;
+        }
+    }
     
 
     void Awake()
@@ -26,12 +38,15 @@ public class InputMgr : MonoBehaviour
 #endif
 
         sp = GetComponent<UISprite>();
+        _spOrgColor = sp.color;
+
         _autoRotCom = playerGO.GetComponent<AutoRot>();
         _runForwardCom = playerGO.GetComponent<RunForward>();
 
         _score = transform.Find("Label").gameObject.GetComponent<UILabel>();
         _player = playerGO.GetComponent<Role2>();
         _player.scoreUpdatedCallback += OnScoreUpdated;
+        _player.SetInput(this);
 
         UIEventListener.Get(gameObject).onPress += onPress;
     }
@@ -64,7 +79,14 @@ public class InputMgr : MonoBehaviour
 
     void onPress(GameObject go, bool state)
     {
-        if (state)
+        if (!enabled)
+            return;
+        OnHandleInput(state);
+    }
+
+    public void OnHandleInput(bool bPressed)
+    {
+        if (bPressed)
         {
             _bRun = true;
             _autoRotCom.enabled = false;

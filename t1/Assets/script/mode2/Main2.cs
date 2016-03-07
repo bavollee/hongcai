@@ -20,20 +20,17 @@ public class Main2 : MonoBehaviour
     public float gameTime = 60f;
     private float _gameTimeRemain = 0f;
 
-    private bool _bStartGame = false;
+    public static bool isStartGame = false;
 
 
     void Awake()
     {
-        for (int i = 0; i < inputs.Length; ++i)
-        {
-            InputMgr input = inputs[i];
-            input.sp.color = Main.btnColor[i];
-        }
         SetIsInputEnabled(false);
         SetIsPlayersActivated(false);
 
-        tips.text = "请按Start按钮开始游戏";
+        tips.text = "选好操作按钮后，点Start开始游戏";
+
+        InitSelectPlayersMode();
 
         UIEventListener.Get(startBtn).onClick = OnStartBtnClick;
         UIEventListener.Get(resetBtn).onClick = OnResetBtnClick;
@@ -41,6 +38,31 @@ public class Main2 : MonoBehaviour
         resetBtn.SetActive(false);
 
         Time.timeScale = 0;
+    }
+
+    private void InitSelectPlayersMode()
+    {
+        for (int i = 0; i < inputs.Length; ++i)
+        {
+            InputMgr input = inputs[i];
+            input.color = Main.btnColor[i];
+            UIEventListener.Get(input.gameObject).onClick += OnSelectPlayer;
+        }
+    }
+
+    private void CancelSelectPlayersMode()
+    {
+        for (int i = 0; i < inputs.Length; ++i)
+        {
+            InputMgr input = inputs[i];
+            UIEventListener.Get(input.gameObject).onClick -= OnSelectPlayer;
+        }
+    }
+
+    private void OnSelectPlayer(GameObject go)
+    {
+        InputMgr input = go.GetComponent<InputMgr>();
+        input.isSelected = !input.isSelected;
     }
 
     private void SetIsInputEnabled(bool value)
@@ -55,13 +77,16 @@ public class Main2 : MonoBehaviour
     {
         for (int i = 0; i < players.Length; ++i)
         {
-            players[i].SetIsActivated(value);
+            Role2 player = players[i];
+            player.SetIsActivated(value);
         }
     }
 
     private void OnStartBtnClick(GameObject go)
     {
         startBtn.SetActive(false);
+        CancelSelectPlayersMode();
+        tips.text = "~预备~";
         StartCoroutine(OnStartGame());
     }
 
@@ -76,18 +101,18 @@ public class Main2 : MonoBehaviour
 
         _curBomb = CreateBomb();
 
-        yield return StartCoroutine(OnSelectPlayer());
+        yield return StartCoroutine(OnSelectPlayerForBindingBomb());
 
-        if (!_bStartGame)
+        if (!isStartGame)
         {
             yield return new WaitForSeconds(1f);
+
+            isStartGame = true;
 
             SetIsInputEnabled(true);
             SetIsPlayersActivated(true);
 
             StartCoroutine(OnCountDown());
-
-            _bStartGame = true;
         }
 
         _curBomb.Run();
@@ -144,7 +169,7 @@ public class Main2 : MonoBehaviour
         {
             tips.text = "~不分胜负~";
         }
-        _bStartGame = false;
+        isStartGame = false;
 
         resetBtn.SetActive(true);
     }
@@ -170,9 +195,9 @@ public class Main2 : MonoBehaviour
         {
             _lastPassedBombPlayer.AddScore(bombAddScore);
             _lastPassedBombPlayer = null;
-
-            target.AddScore(bombSubScore);
         }
+
+        target.AddScore(bombSubScore);
 
         StartCoroutine(OnNextRound());
     }
@@ -183,7 +208,7 @@ public class Main2 : MonoBehaviour
         yield return StartCoroutine(OnStartGame());
     }
 
-    IEnumerator OnSelectPlayer()
+    IEnumerator OnSelectPlayerForBindingBomb()
     {
         const float countDown = 5f;
 
