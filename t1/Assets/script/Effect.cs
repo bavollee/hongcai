@@ -5,9 +5,10 @@ public class Effect
 {
     GameObject g;
     public float t = 1f;
-    public Effect(Vector3 p)
+    public Effect(Vector3 p, string url = "",float delTime = 1f)
     {
-        g = GameObject.Instantiate(Resources.Load("effect")) as GameObject;
+        t = delTime;
+        g = GameObject.Instantiate(Resources.Load(url)) as GameObject;
         g.transform.position = p;
         g.gameObject.name = "effect";
     }

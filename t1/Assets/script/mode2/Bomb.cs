@@ -67,6 +67,10 @@ public class Bomb : MonoBehaviour
     {
         _titleTran.position = WorldToUI(_player.transform.position);
         //_titleTran.position = WorldToUI(head.position);
+        if(Input.GetKeyDown(KeyCode.A))
+        {
+            GameMgr.instance.addEffect(_player.transform.position, "22103", 2f);
+        }
     }
 
     void OnTriggerEnter(Collider other)
@@ -112,6 +116,10 @@ public class Bomb : MonoBehaviour
             time = _time >= 0 ? _time : 0;
             yield return null;
             _time -= Time.deltaTime;
+            if (time < 1.8f && Main2.audio!= null && Main2.audio.isPlaying == false)
+            {
+                Main2.audio.Play();
+            }
         }
         time = 0;
         OnBomb();
@@ -126,6 +134,8 @@ public class Bomb : MonoBehaviour
         if (null != bombCallback)
             bombCallback(this, _player);
 
+        GameMgr.instance.addEffect(_player.transform.position, "22103", 2f);
+        
         Debug.LogWarning("booooooooomp!!");
         Destroy(_bombTitle.gameObject);
         Destroy(gameObject);

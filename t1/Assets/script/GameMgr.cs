@@ -6,19 +6,18 @@ public class GameMgr : MonoBehaviour
 {
     public static GameMgr instance = null;
     public List<Effect> effect = new List<Effect>();
-    AudioSource audio;
+    AudioSource _audio;
     void Awake()
     {
-        audio = GetComponent<AudioSource>();
-
+        _audio = GetComponent<AudioSource>();
     }
-    public void addEffect(Vector3 v3)
+    public void addEffect(Vector3 v3,string url = "effect",float delTime = 1f)
     {
-        effect.Add(new Effect(v3));
+        effect.Add(new Effect(v3, url,delTime));
     }
     public void playAudio()
     {
-        audio.Play();
+        _audio.Play();
     }
     void Update()
     {

@@ -28,7 +28,7 @@ public class Main : MonoBehaviour {
         for (int i = 0; i < num ; i++)
         {
             btnList.Add(GameObject.Find("Top" + i));
-            btnList[i].GetComponent<UISprite>().color = btnColor[i]+Color.grey;
+            btnList[i].GetComponent<UISprite>().color = btnColor[i] - new Color(0, 0, 0,0.5f);
             UIEventListener.Get(btnList[i]).onClick = chooseRole;
             player.Add(i, false);
         }
@@ -54,13 +54,15 @@ public class Main : MonoBehaviour {
     {
         int id = btnList.IndexOf(go);
         player[id] = !player[id];
-        if(player[id])
+        if (player[id])
         {
-            btnList[id].GetComponent<UISprite>().color = btnColor[id]; 
-        }else
-        {
-            btnList[id].GetComponent<UISprite>().color = btnColor[id] + Color.grey;
+            btnList[id].GetComponent<UISprite>().color = btnColor[id];
         }
+        else
+        {
+            btnList[id].GetComponent<UISprite>().color = btnColor[id] - new Color(0, 0, 0,0.5f);
+        }
+        Debug.Log(btnList[id].GetComponent<UISprite>().color);
     }
     void startGame(GameObject g)
     {

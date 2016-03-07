@@ -21,10 +21,11 @@ public class Main2 : MonoBehaviour
     private float _gameTimeRemain = 0f;
 
     public static bool isStartGame = false;
-
+    public static AudioSource audio;
 
     void Awake()
     {
+        audio = GetComponent<AudioSource>();
         SetIsInputEnabled(false);
         SetIsPlayersActivated(false);
 
