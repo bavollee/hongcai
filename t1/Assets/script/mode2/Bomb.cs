@@ -95,6 +95,8 @@ public class Bomb : MonoBehaviour
 
     private IEnumerator OnRun()
     {
+        _bRun = true;
+
         _time = countDown > 0 ? countDown : 0;
 
         while (_time > 0)

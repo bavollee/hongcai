@@ -8,6 +8,7 @@ public class InputMgr : MonoBehaviour
     public GameObject playerGO;
     public KeyCode keyCode = KeyCode.None;
     public bool keyboardMode = true;
+    public Color color;
 
     private AutoRot _autoRotCom;
     private RunForward _runForwardCom;

@@ -13,8 +13,6 @@ public class Role2 : MonoBehaviour
     private AutoRot _autoRot;
     private RunForward _runForward;
 
-    private bool _bSleep = true;
-
     private int _score = 0;
     public int score
     {
