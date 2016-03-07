@@ -2,6 +2,9 @@
 using System.Collections;
 using System.Collections.Generic;
 public class Main : MonoBehaviour {
+
+    public float gameTime = 60f;
+
     public static Main main;
     GameObject g;
     Move m;
@@ -16,7 +19,7 @@ public class Main : MonoBehaviour {
     GameObject endBtn;
     GameObject resetBtn;
     UILabel tips;
-    float gameTime = 0;
+
     public static bool start = false;
     PropMgr _propMgr;
     
