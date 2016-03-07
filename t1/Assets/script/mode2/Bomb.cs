@@ -65,7 +65,8 @@ public class Bomb : MonoBehaviour
 
     void Update()
     {
-        _titleTran.position = WorldToUI(head.position);
+        _titleTran.position = WorldToUI(_player.transform.position);
+        //_titleTran.position = WorldToUI(head.position);
     }
 
     void OnTriggerEnter(Collider other)
@@ -80,6 +81,13 @@ public class Bomb : MonoBehaviour
             if (null != passBombCallback)
                 passBombCallback(this, _player, player);
             player.BindBomb(this);
+
+            Vector3 point = (other.gameObject.transform.position + _player.transform.position) / 2;
+            if (GameMgr.instance)
+            {
+                GameMgr.instance.addEffect(point);
+                GameMgr.instance.playAudio();
+            }
         }
     }
 

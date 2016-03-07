@@ -8,6 +8,7 @@ public class InputMgr : MonoBehaviour
     public GameObject playerGO;
     public KeyCode keyCode = KeyCode.None;
     public bool keyboardMode = true;
+    public UISprite sp;
     public Color color;
 
     private AutoRot _autoRotCom;
@@ -16,17 +17,15 @@ public class InputMgr : MonoBehaviour
 
     private UILabel _score;
     private Role2 _player;
-
+    
 
     void Awake()
     {
 #if UNITY_ANDROID
         keyboardMode = false;
 #endif
-    }
 
-    void Start()
-    {
+        sp = GetComponent<UISprite>();
         _autoRotCom = playerGO.GetComponent<AutoRot>();
         _runForwardCom = playerGO.GetComponent<RunForward>();
 
