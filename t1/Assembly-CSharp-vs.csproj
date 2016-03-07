@@ -189,6 +189,7 @@
      <Compile Include="Assets\script\Move.cs" />
      <Compile Include="Assets\script\PropMgr.cs" />
      <Compile Include="Assets\script\Role.cs" />
+     <Compile Include="Assets\script\mode2\AI2.cs" />
      <Compile Include="Assets\script\mode2\AutoRot.cs" />
      <Compile Include="Assets\script\mode2\Bomb.cs" />
      <Compile Include="Assets\script\mode2\DropJudge.cs" />
